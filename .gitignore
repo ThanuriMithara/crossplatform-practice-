@@ -2,6 +2,7 @@
 
 # dependencies
 node_modules/
+EventHub-backend/node_modules/
 
 # Expo
 .expo/
