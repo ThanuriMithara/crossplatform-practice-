@@ -3,7 +3,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Booking, EventItem, User } from '../models/types';
 
 // Default development IP - can be adjusted or overridden via AsyncStorage
-export const API_BASE_URL = 'http://172.19.25.78:5000/api';
+export const API_BASE_URL = 'http://172.21.157.155:5000/api';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

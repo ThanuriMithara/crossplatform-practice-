@@ -10,6 +10,7 @@ import {
   Image,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useAuth } from '../context/AuthContext';
 import { THEME } from '../constants/theme';
 import { EventCategory, EventItem } from '../models/types';
@@ -20,6 +21,7 @@ import { EventCard } from '../components/EventCard';
 import { EmptyState } from '../components/EmptyState';
 
 export default function HomeScreen({ navigation }: any) {
+  const insets = useSafeAreaInsets();
   const { user } = useAuth();
   const [events, setEvents] = useState<EventItem[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<EventCategory>('All');
@@ -66,7 +68,7 @@ export default function HomeScreen({ navigation }: any) {
         contentContainerStyle={styles.scrollContent}
       >
         {/* Top Header Bar */}
-        <View style={styles.topHeader}>
+        <View style={[styles.topHeader, { paddingTop: Math.max(insets.top + 40, 72) }]}>
           <View>
             <Text style={styles.greetingText}>
               Welcome back, {user?.name?.split(' ')[0] || 'Explorer'} 👋
@@ -191,8 +193,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: THEME.spacing.md,
-    paddingTop: THEME.spacing.lg,
-    marginBottom: THEME.spacing.md,
+    marginBottom: THEME.spacing.lg,
   },
   greetingText: {
     fontSize: THEME.fontSize.xl,
